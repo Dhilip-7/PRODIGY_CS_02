@@ -1,0 +1,62 @@
+
+from PIL import Image
+
+def encrypt_decrypt_image(input_path, output_path, key, mode):
+    try:
+       
+        img = Image.open(input_path)
+        pixels = img.load()
+        
+       
+        width, height = img.size
+        
+      
+        for y in range(height):
+            for x in range(width):
+                r, g, b = pixels[x, y]
+               
+                r = r ^ key
+                g = g ^ key
+                b = b ^ key
+                pixels[x, y] = (r, g, b)
+        
+      
+        img.save(output_path)
+        print(f"{mode.capitalize()}ed image saved as {output_path}")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+
+def main():
+    print("Image Encryption/Decryption Tool")
+    print("--------------------------------")
+    print("Choose mode:")
+    print("1. Encrypt")
+    print("2. Decrypt")
+    
+   
+    mode = input("Enter mode (1/2): ")
+    while mode not in ['1', '2']:
+        print("Invalid mode! Please choose 1 or 2.")
+        mode = input("Enter mode (1/2): ")
+    
+    input_path = input("Enter input image path (e.g., input.jpg): ")
+    output_path = input("Enter output image path (e.g., output.jpg): ")
+    key = input("Enter encryption key (0-255): ")
+    
+ 
+    try:
+        key = int(key)
+        if key < 0 or key > 255:
+            print("Key must be between 0 and 255.")
+            return
+    except ValueError:
+        print("Invalid key! Please enter a number.")
+        return
+    
+   
+    mode_str = 'encrypt' if mode == '1' else 'decrypt'
+    encrypt_decrypt_image(input_path, output_path, key, mode_str)
+
+if __name__ == "__main__":
+    main()
