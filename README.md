@@ -18,7 +18,7 @@ Pillow library (pip install Pillow)
 
 Installation
 
-Clone this repository:git clone https://github.com/Dhilip-7/PRODIGY_CS_02/image-encryption-tool.git
+Clone this repository:https://github.com/Dhilip-7/PRODIGY_CS_02/blob/main/src/image-encryption-tool
 cd image-encryption-tool
 
 
